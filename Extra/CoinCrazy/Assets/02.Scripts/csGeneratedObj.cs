@@ -14,7 +14,7 @@ public class csGeneratedObj : MonoBehaviour {
         {
             if (transform.position.y < 1)
             {
-                Vector3 pos = GameObject.Find("GenericMan").transform.position - transform.position;
+                Vector3 pos = GameObject.Find("Player").transform.position - transform.position;
                 pos.Normalize();
                 pos *= power;
                 pos.y += 30;

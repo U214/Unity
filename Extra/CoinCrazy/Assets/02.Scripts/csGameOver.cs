@@ -8,7 +8,7 @@ public class csGameOver : MonoBehaviour {
 
 	public void GameOver()
     {
-        GameObject.Find("GenericMan").GetComponent<csPlayerController>().playerDestroy();
+        GameObject.Find("Player").GetComponent<csPlayerController>().playerDestroy();
         GameObject.Find("Hp").SetActive(false);
         GameObject.Find("Score").SetActive(false);
         GameObject.Find("Canvas").transform.FindChild("GameoverLogo").gameObject.SetActive(true);

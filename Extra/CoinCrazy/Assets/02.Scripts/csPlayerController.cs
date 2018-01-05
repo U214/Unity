@@ -13,8 +13,6 @@ public class csPlayerController : MonoBehaviour {
 
     void Start () {
         controller = GetComponent<CharacterController>();
-        // rapid walk
-        GetComponent<Animation>()["Walk"].speed = 1.5f;
     }
 	
 	void Update () {
@@ -36,12 +34,12 @@ public class csPlayerController : MonoBehaviour {
             else if (velocity.magnitude > 0.5)
             {
                 // turn walk animation
-                GetComponent<Animation>().CrossFade("Walk", 0.1f);
+                GetComponent<csMecanim>().doWalk();
                 transform.LookAt(transform.position + velocity);
             }
             else
             {
-                GetComponent<Animation>().CrossFade("Idle", 0.1f);
+                GetComponent<csMecanim>().doIdle();
             }
         }
         // add speed (gravity)
@@ -53,9 +51,9 @@ public class csPlayerController : MonoBehaviour {
 
     IEnumerator doJump()
     {
-        GetComponent<Animation>().Play("Jump");
+        GetComponent<csMecanim>().doJump();
         yield return new WaitForSeconds(0.46f);
-        GetComponent<Animation>().Play("Idle");
+        GetComponent<csMecanim>().doIdle();
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)

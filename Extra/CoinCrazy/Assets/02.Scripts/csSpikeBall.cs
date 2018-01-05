@@ -6,7 +6,7 @@ public class csSpikeBall : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.name == "GenericMan")
+        if (collision.collider.gameObject.name == "Player")
         {
             Debug.Log("SpikeBall : OnCollisionEnter");
 
