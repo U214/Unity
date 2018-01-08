@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterMove : MonoBehaviour {
 
@@ -32,10 +33,9 @@ public class CharacterMove : MonoBehaviour {
             gameObject.transform.position = new Vector3(0.0f, 40.0f, 0.0f);
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float z = CrossPlatformInputManager.GetAxis("Vertical");
        
-        Vector3 moveDirection = new Vector3(x, 0, z);
+        Vector3 moveDirection = new Vector3(transform.position.x, 0, z);
         moveDirection = cameraTransform.TransformDirection(moveDirection);
 
         moveDirection *= moveSpeed;
@@ -43,11 +43,6 @@ public class CharacterMove : MonoBehaviour {
         if (characterController.isGrounded)
         {
             yVelocity = 0.0f;
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                yVelocity = jumpSpeed;
-            }
         }
 
         yVelocity += (gravity * Time.deltaTime);

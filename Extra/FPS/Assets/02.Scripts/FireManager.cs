@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class FireManager : MonoBehaviour {
 
@@ -22,7 +23,7 @@ public class FireManager : MonoBehaviour {
 
         if (playerHealth.isDead) return;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (CrossPlatformInputManager.GetButtonDown("Attack"))
         {
             GameObject obj = (GameObject)Instantiate(fireObject);
 
