@@ -9,6 +9,7 @@ public class csTitle : MonoBehaviour {
 
     void Start()
     {
+
         originalRotation = transform.localRotation;
     }
 

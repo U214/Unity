@@ -12,4 +12,4 @@
 */*/.vs
 *.csproj
 *.sln
-
+*.meta
