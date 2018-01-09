@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
     int score = 0;
+    public bool isGameover = false;
     public Text scoreText;
     public GameObject readyText;
+    public GameObject overText;
 
     void Awake()
     {
@@ -22,6 +25,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         Invoke("StartGame", 3.0f);
         readyText.SetActive(false);
+        overText.SetActive(false);
+        overText.GetComponentInChildren<Text>().gameObject.SetActive(false);
         StartCoroutine(showReady());
 	}
 	
@@ -51,5 +56,28 @@ public class GameManager : MonoBehaviour {
 
             count++;
         }
+    }
+
+    public void GameOver()
+    {
+        isGameover = true;
+        overText.SetActive(true);
+        overText.GetComponentInChildren<Text>().gameObject.SetActive(true);
+
+        StartCoroutine(pressAnykey());
+    }
+
+    IEnumerator pressAnykey()
+    {
+        while (true)
+        {
+            if (Input.GetButton("Jump"))
+            {
+                SceneManager.LoadScene("Game");
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        //yield return new WaitForSeconds(2.0f);
+        //SceneManager.LoadScene("Game");
     }
 }

@@ -6,7 +6,7 @@ public class csSpawnManager : MonoBehaviour {
 
     Vector3[] positions = new Vector3[5];
 
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
     public static bool isSpawn = false;
 
     float spawnDelay = 1.5f;
@@ -18,7 +18,10 @@ public class csSpawnManager : MonoBehaviour {
 
     void Update()
     {
-        SpawnEnemy();
+        if (!GameManager.instance.isGameover)
+        {
+            SpawnEnemy();
+        }
     }
 
     void CreatePositions()
@@ -38,7 +41,7 @@ public class csSpawnManager : MonoBehaviour {
 
             positions[i] = worldPos;
 
-            Debug.Log(positions[i]);
+            //Debug.Log(positions[i]);
         }
     }
 
@@ -49,7 +52,10 @@ public class csSpawnManager : MonoBehaviour {
             if (spawnTimer > spawnDelay)
             {
                 int rand = Random.Range(0, positions.Length);
-                Instantiate(enemyPrefab, positions[rand], Quaternion.identity);
+                Instantiate(
+                    enemyPrefab[Random.Range(0, enemyPrefab.Length)], 
+                    positions[rand], 
+                    Quaternion.identity);
                 spawnTimer = 0.0f;
             }
             spawnTimer += Time.deltaTime;

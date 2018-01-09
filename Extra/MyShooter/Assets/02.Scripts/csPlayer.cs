@@ -14,7 +14,7 @@ public class csPlayer : MonoBehaviour {
 
 	void Update () {
         MovePlayer();
-        ShootLaser();
+       // ShootLaser();
 	}
 
     void MovePlayer()
