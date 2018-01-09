@@ -1,15 +1,12 @@
 */Library
-*/ProjectSettings
 */UnityPackageManager
 */obj
 */Temp
 */.vs
 */*/Library
-*/*/ProjectSettings
 */*/UnityPackageManager
 */*/obj
 */*/Temp
 */*/.vs
 *.csproj
 *.sln
-*.meta
