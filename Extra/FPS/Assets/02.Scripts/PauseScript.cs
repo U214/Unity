@@ -19,8 +19,11 @@ public class PauseScript : MonoBehaviour {
             GameObject.Find("Canvas").transform.FindChild("Pause").gameObject.SetActive(false);
         } else
         {
-            gamePause = true;
-            GameObject.Find("Canvas").transform.FindChild("Pause").gameObject.SetActive(true);
+            if (!GameObject.Find("Player").gameObject.GetComponent<PlayerState>().isDead)
+            {
+                gamePause = true;
+                GameObject.Find("Canvas").transform.FindChild("Pause").gameObject.SetActive(true);
+            }
         }
     }
 

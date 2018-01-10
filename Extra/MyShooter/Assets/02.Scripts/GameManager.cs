@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour {
     public void GameOver()
     {
         isGameover = true;
+        csPlayer.canShoot = false;
+        csSpawnManager.isSpawn = false;
         overText.SetActive(true);
         overText.GetComponentInChildren<Text>().gameObject.SetActive(true);
 

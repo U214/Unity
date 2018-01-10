@@ -5,14 +5,15 @@ using UnityEngine;
 public class csLaser : MonoBehaviour {
 
     public float moveSpeed = 0.45f;
+    public string type;
 
 	void Update () {
         float moveY = moveSpeed * Time.deltaTime;
 
-        if (gameObject.transform.parent.tag == "Enemy")
+        if (type == "Enemy")
         {
             transform.eulerAngles = new Vector3(180.0f, 0.0f, 0.0f);
-     
+            transform.Translate(0, moveY, 0);
             if (transform.position.y <= -0.9f)
             {
                 OnBecameInvisible();
@@ -20,13 +21,13 @@ public class csLaser : MonoBehaviour {
         }
         else
         {
+            transform.Translate(0, moveY, 0);
+
             if (transform.position.y >= 0.9f)
             {
                 OnBecameInvisible();
             }
         }
-
-        transform.Translate(0, moveY, 0);
     }
 
     void OnBecameInvisible()

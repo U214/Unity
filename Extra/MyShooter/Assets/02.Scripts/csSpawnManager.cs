@@ -9,7 +9,7 @@ public class csSpawnManager : MonoBehaviour {
     public GameObject[] enemyPrefab;
     public static bool isSpawn = false;
 
-    float spawnDelay = 1.5f;
+    float spawnDelay = 0.5f;
     float spawnTimer = 0.0f;
 
 	void Start () {

@@ -78,7 +78,7 @@ public class csEnemy : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D col)
     {
         if ((col.gameObject.tag == "Player") ||
-            (col.gameObject.tag == "Laser"))
+            (col.gameObject.tag == "Laser") && col.gameObject.GetComponent<csLaser>().type.Equals("Player"))
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             SoundManager.instance.PlaySound();
@@ -102,6 +102,7 @@ public class csEnemy : MonoBehaviour {
         {
             GameObject obj = (GameObject)Instantiate(laserPrefab, transform.position, Quaternion.identity);
             obj.transform.parent = gameObject.transform;
+            obj.GetComponent<csLaser>().type = "Enemy";
             shootTimer = 0.0f;
         }
 

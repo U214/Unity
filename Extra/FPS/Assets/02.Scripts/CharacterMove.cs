@@ -7,10 +7,11 @@ public class CharacterMove : MonoBehaviour {
 
     public Transform cameraTransform;
 
-    public float moveSpeed = 10.0f;
+    public float moveSpeed = 5.0f;
     public float jumpSpeed = 10.0f;
     public float gravity = -20.0f;
 
+    float speed = 20.0f;
     CharacterController characterController = null;
     float yVelocity = 0.0f;
 
@@ -26,6 +27,8 @@ public class CharacterMove : MonoBehaviour {
     {
         if (playerHealth.isDead) return;
 
+        if (PauseScript.gamePause) return;
+
         float y = transform.position.y;
 
         if (y < 0)
@@ -33,12 +36,15 @@ public class CharacterMove : MonoBehaviour {
             gameObject.transform.position = new Vector3(0.0f, 40.0f, 0.0f);
         }
 
-        float z = CrossPlatformInputManager.GetAxis("Vertical");
-       
-        Vector3 moveDirection = new Vector3(transform.position.x, 0, z);
+        float ang = CrossPlatformInputManager.GetAxis("Horizontal");
+        float ver = CrossPlatformInputManager.GetAxis("Vertical");
+
+        ver = ver * speed * Time.deltaTime;
+        Vector3 moveDirection = new Vector3(0, 0, ver * moveSpeed);
         moveDirection = cameraTransform.TransformDirection(moveDirection);
 
-        moveDirection *= moveSpeed;
+        ang = ang * speed * Time.deltaTime;
+        transform.rotation *= Quaternion.AngleAxis(ang, Vector3.up);
 
         if (characterController.isGrounded)
         {

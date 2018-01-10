@@ -14,7 +14,7 @@ public class csPlayer : MonoBehaviour {
 
 	void Update () {
         MovePlayer();
-       // ShootLaser();
+        ShootLaser();
 	}
 
     void MovePlayer()
@@ -36,7 +36,8 @@ public class csPlayer : MonoBehaviour {
         {
             if (shootTimer > shootDelay)
             {
-                Instantiate(laserPrefab, transform.position, Quaternion.identity);
+                GameObject obj = (GameObject)Instantiate(laserPrefab, transform.position, Quaternion.identity);
+                obj.GetComponent<csLaser>().type = "Player";
                 shootTimer = 0.0f;
             }
 
