@@ -216,39 +216,38 @@ MonoBehaviour:
   type: 17
   showIconInInspector: 1
   keys:
-  - path
-  - movetopath
-  - looktime
+  - position
   - time
-  - easetype
-  - looptype
-  - orienttopath
-  indexes: 00000000000000000000000001000000000000000000000001000000
+  - movetopath
+  - path
+  - islocal
+  indexes: 0000000000000000000000000000000001000000
   metadatas:
-  - p
+  - t
   - 
   - 
-  - 
-  - 
-  - 
+  - v
   - 
   ints: 
   floats:
-  - 2
   - 5
   bools: 0101
-  strings:
-  - myPath1
-  vector3s: []
+  strings: []
+  vector3s:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   colors: []
   spaces: 
-  easeTypes: 0f000000
-  loopTypes: 00000000
+  easeTypes: 
+  loopTypes: 
   gameObjects: []
-  transforms: []
+  transforms:
+  - {fileID: 1373475483}
   audioClips: []
   audioSources: []
-  vector3Arrays: []
+  vector3Arrays:
+  - indexes: 000000000100000002000000
   transformArrays: []
   paths: []
 --- !u!114 &20797086
@@ -355,6 +354,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37dff454f95008b409bc36d640b3136f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1373475482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1373475483}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: -1577725955494882426, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373475483
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1373475482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 91.97, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1416335900
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1416335901}
   - component: {fileID: 1416335902}
+  - component: {fileID: 1416335903}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -377,12 +405,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1416335900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 91.97, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1416335902
 MonoBehaviour:
@@ -410,6 +438,18 @@ MonoBehaviour:
   nodeCount: 9
   initialized: 1
   initialName: New Path 1
+--- !u!114 &1416335903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416335900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465e33b02fa9cbd4ea98e5218503d7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1373475482}
 --- !u!1 &1599127731
 GameObject:
   m_ObjectHideFlags: 0

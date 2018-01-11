@@ -9,7 +9,8 @@ public class iTweenPathTest : MonoBehaviour {
         if (Input.GetButtonDown("Fire1"))
         {
             Hashtable hash = new Hashtable();
-
+            Vector3[] arr = iTweenPath.GetPath("MyPath1");
+            arr[0] = new Vector3(5.0f, 5.0f, 5.0f);
             hash.Add("path", iTweenPath.GetPath("MyPath1"));
             hash.Add("movetopath", true);
             hash.Add("orienttopath", true);
@@ -17,6 +18,7 @@ public class iTweenPathTest : MonoBehaviour {
             hash.Add("time", 10.0f);
             hash.Add("easetype", iTween.EaseType.easeInOutExpo);
             hash.Add("looptype", iTween.LoopType.none);
+            hash.Add("islocal", true);
 
             hash.Add("onstart", "ItweenStart");
             hash.Add("onstarttarget", gameObject);
