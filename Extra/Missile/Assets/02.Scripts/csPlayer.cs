@@ -1,48 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class csPlayer : MonoBehaviour {
-    float speed = 50.0f;
+    public float speed = 20.0f;
 
     public GameObject missile;
     public GameObject firePos;
     public GameObject Aim;
 
+    float rotX = 0.0f;
+    float rotY = 0.0f;
+    float rotZ = 0.0f;
+
     void Start()
     {
-        Aim.SetActive(false);
+        StartCoroutine(UpdateRotate());
     }
 
     void Update () {
-        float h = Input.GetAxis("Horizontal");
-        h = h * speed * Time.deltaTime;
+        float roll = Input.GetAxis("Horizontal");
+        float pitch = Input.GetAxis("Vertical");
 
-        //transform.Rotate(new Vector3(0, 1, -1) * h);
-       // transform.Rotate(Vector3.right * h * 0.5f);
-        transform.Translate(Vector3.right * h);
-
-        // DrawRay
-        Debug.DrawRay(firePos.transform.position, transform.forward * 130, Color.red);
-
-        // Raycast
-        RaycastHit hit;
-
-        if (Physics.Raycast(firePos.transform.position, transform.forward, out hit, 130))
+        if ((roll > 0) && (rotZ > -40))
         {
-           // Aim.transform.position = firePos.transform.position;
-            Aim.SetActive(true);
-            Debug.Log(hit.collider.gameObject.name);
+            rotY++;
+            rotZ--;
+        } else if ((roll < 0) && (rotZ < 40))
+        {
+            rotY--;
+            rotZ++;
+        }
 
-            if (Input.GetButtonDown("Jump"))
+        if ((pitch < 0) && (rotX < 30))
+        {
+            rotX++;
+        }
+        else if ((pitch > 0) && (rotX > -30))
+        {
+            rotX--;
+        }
+
+        transform.rotation = Quaternion.Euler(new Vector3(rotX, rotY, rotZ));
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    IEnumerator UpdateRotate()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.01f);
+
+            if (!Input.anyKey)
             {
-                GameObject obj = (GameObject)Instantiate(missile);
-                obj.transform.position = firePos.transform.position;
-                obj.GetComponent<csMissile>().target = hit.collider.gameObject.transform;
+                if ((rotX > 0.0f) && (rotX <= 30.0f))
+                {
+                    rotX--;
+                }
+
+                if ((rotX < 0.0f) && (rotX >= -30.0f))
+                {
+                    rotX++;
+                }
+
+                if ((rotZ > 0.0f) && (rotZ <= 40.0f))
+                {
+                    rotZ--;
+                }
+
+                if ((rotZ < 0.0f) && (rotZ >= -40.0f))
+                {
+                    rotZ++;
+                }
+
+                transform.rotation = Quaternion.Euler(new Vector3(rotX, rotY, rotZ));
             }
-        } else
-        {
-            Aim.SetActive(false);
         }
     }
 }

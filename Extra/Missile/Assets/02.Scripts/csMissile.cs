@@ -45,6 +45,7 @@ public class csMissile : MonoBehaviour {
             GameObject particleObj = (GameObject)Instantiate(particle);
             particleObj.transform.position = transform.position;
             Destroy(other.gameObject);
+            Destroy(other.gameObject.GetComponent<enemyScript>().enemy);
             Destroy(gameObject);
         }
     }

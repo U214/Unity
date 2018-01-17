@@ -1724,3 +1724,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0a6a1985543174681447a792f5b0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mini_enemy: {fileID: 1305987404532378, guid: 108257ad4797bcb4b9077000264242ff, type: 2}
