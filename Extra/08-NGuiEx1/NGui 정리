@@ -1,0 +1,32 @@
+NGUI의 기본 구조 1. Root 2. Camera 3. Panel - Widget(sprite, label…)
+
+1. Root - UIRoot, UIPanel, Rigidbody
+          UIRoot : Scaling Type을 결정한다.
+              Flexible - 항상 같은 픽셀수 유지
+              Constrained - 해상도에 맞춰진 비율
+              ConstrainedOnMobiles - 피씨빌드는 Flexible, 모바일빌드는 Constrained
+          UIPanel : 패널 설정
+              Aplha - 자식 위젯들의 알파값 결정(페이드인아웃에서  유용)
+              Depth - 렌더링 순서 결정(높을 수록 앞에 그려짐) 자식 위젯에 영향끼침
+              Clipping - 특정 영역만 렌더링한다(soft로 하면 외곽부분을 흐리게 할 수 있다)
+              Render Q - 렌더링 순서를 정한다
+              Sort Order - 같은 depth 에서 렌더링 순서를 정한다
+              Normal - 패널이 빛에 영향을 받는다
+              Cull - 패널이 드래그 되는 동안 자식 위젯을 렌더링 하지 않음
+              Static - 자식 위젯들의 이동이 없는 경우 PRS값을 계산하지 않는다(성능향상)
+          Rigidbody : 유니티는 리지드바디를 가진 객체들에 대해 최적화가 되어 있기 
+                 때문에 붙여준다. 이벤트를 받으려는 의미도 있는듯
+2. Camera - Camera, UICamera
+            Camera : UI담당 카메라, Depth only, Orthographic으로 설정 되어 있다.
+            UICamera : 각 UI에서 발생하는 이벤트 메세지를 보낸다. ( UI와 상호작용)
+                Event Type - 카메라가 처리할 이벤트 유형을 결정한다.
+                    World - 게임오브젝트와 상호작용, UI - UI와 상호작용
+                Event go to - 이벤트를 전달할 컴포넌트 설정(콜라이더와 리지드바디)
+                Event Mask - 이벤트를 받아들일 레이어 지정
+                Sticky Tooltip - 커서가 위젯 밖으로 이동할때 / 커서가 이동할 때 툴팁 사라짐
+                Allow Multi Touch - 같은 depth 에서 렌더링 순서를 정한다
+                Raycast Range - 이벤트를 감지할 때 사용되는 레이캐스트 범위 지정
+                Thresholds - 특정 이벤트가 발생하기 위한 최소 픽셀 값 
+3. Panel - 패널에 위젯들을 모아서 관리하고 한번의 드로우 콜로 렌더링 할 수 있다(1패널 1드로우콜)
+
+아틀라스 : 텍스쳐(png)를 모아서 하나의 아틀라스로 만든다. 관리하기도 용이하고 하나의 메터리얼만 사용할 수 있어서 드로우콜을 줄인다.
