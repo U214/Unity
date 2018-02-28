@@ -8,5 +8,10 @@
 */*/obj
 */*/Temp
 */*/.vs
+*/*/*/Library
+*/*/*/UnityPackageManager
+*/*/*/obj
+*/*/*/Temp
+*/*/*/.vs
 *.csproj
 *.sln
